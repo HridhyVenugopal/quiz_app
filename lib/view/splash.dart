@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:quiz/view/questions.dart';
+
 
 class Splash extends StatelessWidget {
   const Splash({super.key});
@@ -18,15 +19,17 @@ class Splash extends StatelessWidget {
             children: [
               ElevatedButton(onPressed: (){},
                   style: ButtonStyle(
-                    maximumSize: MaterialStateProperty.all(Size.fromHeight(100)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                      maximumSize: MaterialStateProperty.all(Size.fromHeight(100)),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                       backgroundColor: MaterialStatePropertyAll(Color(
                           0xffa807ff))),
-                  child:const  Text("Start Quiz",style: TextStyle(color: Colors.white),)),
-          SizedBox(height: 100,),
-          const  Text("Powered by",style: TextStyle(color: Colors.grey,fontSize: 15),),
-          SizedBox(height: 5,),
-          const  Text("www.artifitia.com",style: TextStyle(color: Colors.grey,fontSize: 18))
+                  child:InkWell(
+                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuestionPage())),
+                      child: const  Text("Start Quiz",style: TextStyle(color: Colors.white),))),
+              SizedBox(height: 100,),
+              const  Text("Powered by",style: TextStyle(color: Colors.grey,fontSize: 15),),
+              SizedBox(height: 5,),
+              const  Text("www.artifitia.com",style: TextStyle(color: Colors.grey,fontSize: 18))
             ],
           ),
         ],

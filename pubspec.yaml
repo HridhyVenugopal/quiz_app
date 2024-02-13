@@ -36,7 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   #api dio
-  dio: ^5.4.0
+  http: ^1.2.0
+  provider: ^6.1.1
+  flutter_rounded_progress_bar: ^0.3.2
   get: ^4.6.6
 
 dev_dependencies:

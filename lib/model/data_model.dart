@@ -1,58 +1,58 @@
 // To parse this JSON data, do
 //
-//     final quiz = quizFromJson(jsonString);
+//     final questionModel = questionModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<Quiz> quizFromJson(String str) => List<Quiz>.from(json.decode(str).map((x) => Quiz.fromJson(x)));
+List<QuestionModel> questionModelFromJson(String str) => List<QuestionModel>.from(json.decode(str).map((x) => QuestionModel.fromJson(x)));
 
-String quizToJson(List<Quiz> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String questionModelToJson(List<QuestionModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Quiz {
-  String id;
-  String question;
-  List<Option> options;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int v;
+class QuestionModel {
+  String? id;
+  String? question;
+  List<Option>? options;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? v;
 
-  Quiz({
-    required this.id,
-    required this.question,
-    required this.options,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
+  QuestionModel({
+    this.id,
+    this.question,
+    this.options,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
   });
 
-  factory Quiz.fromJson(Map<String, dynamic> json) => Quiz(
+  factory QuestionModel.fromJson(Map<String, dynamic> json) => QuestionModel(
     id: json["_id"],
     question: json["question"],
-    options: List<Option>.from(json["options"].map((x) => Option.fromJson(x))),
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
+    options: json["options"] == null ? [] : List<Option>.from(json["options"]!.map((x) => Option.fromJson(x))),
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     v: json["__v"],
   );
 
   Map<String, dynamic> toJson() => {
     "_id": id,
     "question": question,
-    "options": List<dynamic>.from(options.map((x) => x.toJson())),
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
+    "options": options == null ? [] : List<dynamic>.from(options!.map((x) => x.toJson())),
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
     "__v": v,
   };
 }
 
 class Option {
-  String text;
-  bool isCorrect;
-  String id;
+  String? text;
+  bool? isCorrect;
+  String? id;
 
   Option({
-    required this.text,
-    required this.isCorrect,
-    required this.id,
+    this.text,
+    this.isCorrect,
+    this.id,
   });
 
   factory Option.fromJson(Map<String, dynamic> json) => Option(
